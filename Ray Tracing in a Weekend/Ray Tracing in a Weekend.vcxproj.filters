@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Vec3.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Vec3.h">
+    <ClInclude Include="Ray.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,13 +26,13 @@
     <ClCompile Include="Ray Tracing in a Weekend.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Vec3.cpp">
+    <ClCompile Include="Ray.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="OutputPPM.ppm">
-      <Filter>源文件</Filter>
+      <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
 </Project>
