@@ -7,8 +7,22 @@
 
 using namespace std;
 
-vec3 color(const ray& r)
+bool hit_sphere(const vec3& center, float radius, const ray& r)
 {
+	vec3 oc = r.origin()-center;
+	float a = dot(r.direction(), r.direction());
+	float b = 2.0f * dot(r.direction(), oc);
+	float c = dot(oc, oc) - radius * radius;
+
+	float discriment = b * b - 4*a * c;
+	return (discriment > 0);
+}
+
+
+vec3 color(const ray &r)
+{
+	if (hit_sphere(vec3(0, 0, -1), 5, r))
+		return vec3(1.0f, 0.f, 0.f);
 	vec3 unit_direction = unit_vector(r.direction());
 	float t = 0.5f*(unit_direction.y() + 1.0f);
 	return (1.0f - t)*vec3(1.0f, 1.0f, 1.0f) + t * vec3(0.5f, 0.7f, 1.0f);
