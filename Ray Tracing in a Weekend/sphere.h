@@ -7,7 +7,7 @@
 class sphere : public hitable
 {
 public:
-	sphere();
+	sphere() {};
 	sphere(vec3 cen, float r) :center(cen), radius(r) {};
 
 	inline vec3 getCenter()	const {return center;}
@@ -18,11 +18,9 @@ public:
 
 	inline void setRadius(float r){radius = r;}
 
-	~sphere();	
-
 	virtual bool hit(const ray &r, float t_min, float t_max, hit_record &rec) const ;
 
-private:
+private:	
 	vec3 center;
 	float radius;
 };
