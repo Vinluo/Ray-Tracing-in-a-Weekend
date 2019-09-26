@@ -157,6 +157,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="sphere.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="material.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
