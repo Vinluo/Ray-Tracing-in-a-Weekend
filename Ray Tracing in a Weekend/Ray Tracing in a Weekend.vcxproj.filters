@@ -36,21 +36,15 @@
     <ClInclude Include="material.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ray Tracing in a Weekend.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Ray.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="hitable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="sphere.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="hitable_list.cpp">
