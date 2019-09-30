@@ -4,13 +4,15 @@
 
 #include "hitable.h"
 
+class material;
+
 class sphere : public hitable
 {
 public:
 
 	sphere() {};
 
-	sphere(vec3 cen, float r) :center(cen), radius(r) {};
+	sphere(vec3 cen, float r,material* mater_) :center(cen), radius(r),mater(mater_) {};
 
 	inline vec3 getCenter()	const {return center;}
 
@@ -25,6 +27,7 @@ public:
 private:	
 	vec3 center;
 	float radius;
+	material * mater;
 };
 
 

@@ -3,7 +3,6 @@
 #define HITABLE_H
 
 #include "Ray.h"
-#include "material.h"
 
 class material;
 

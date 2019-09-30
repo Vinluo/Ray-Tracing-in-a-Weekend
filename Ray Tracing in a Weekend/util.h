@@ -1,9 +1,16 @@
 #pragma once
+#ifndef UTIL_H
+#define UTIL_H
+
 #include <iostream>
 #include <random>
 #include "Vec3.h"
 #include "sphere.h"
 #include "hitable.h"
+#include "Ray.h"
+#include "material.h"
+
+class material;
 
 constexpr float LARGE_FLT = 98e8f; // 大浮点数
 constexpr float DELTA_FLT = 98e-8f; // 小浮点数
@@ -33,7 +40,7 @@ vec3 color(const ray& r, hitable *world,int depth)
 	{
 		ray scattered;
 		vec3 attenuation;
-		if (depth<50&&rec.mat_ptt->scatter(r,rec,attenuation,scattered))
+		if ((depth <50) && rec.mat_ptt->scatter(r,rec,attenuation,scattered))
 		{
 			return attenuation * color(scattered, world, depth + 1);
 		}
@@ -50,7 +57,10 @@ vec3 color(const ray& r, hitable *world,int depth)
 	}
 }
 
+
 vec3 reflect(const vec3 &v, const vec3 &n)
 {
 	return v - 2 * dot(v, n)*n;
 }
+
+#endif // UTIL_H

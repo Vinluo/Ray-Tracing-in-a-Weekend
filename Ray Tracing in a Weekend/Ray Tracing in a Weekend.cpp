@@ -8,6 +8,8 @@
 #include "hitable_list.h"
 #include "camera.h"
 #include "util.h"
+#include "material.h"
+#include "sphere.h"
 
 using namespace std;
 
@@ -19,10 +21,13 @@ int main()
 	int ny = 100;
 	int ns = 100;
 	OutputPPM << "P3\n" << nx << " " << ny <<"\n255\n";
-	hitable *list[2];
-	list[0] = new sphere(vec3(0, 0, -1), 0.5);
-	list[1] = new sphere(vec3(0, -100.5, -1), 100);
-	hitable *world = new hitable_list(list, 2);
+	hitable *list[4];
+
+	list[0] = new sphere(vec3(0, 0, -1), 0.5,new lambertian(vec3(0.8f,0.3f,0.3f)));
+	list[1] = new sphere(vec3(0, -100.5, -1), 100,new lambertian(vec3(0.8f, 0.8f, 0.f)));
+	list[2] = new sphere(vec3(1, 0, -1), 0.5, new metal(vec3(0.8f,0.6f,0.2f)));
+	list[3] = new sphere(vec3(-1, 0, -1), 0.5, new metal(vec3(0.8f, 0.8f, 0.8f)));
+	hitable *world = new hitable_list(list, 4);
 	camera cam;
 	for (int j = ny - 1; j >= 0; j--)
 	{
@@ -35,7 +40,7 @@ int main()
 				float v = float(j+ RandF())/ float(ny);
 				ray r = cam.get_ray(u, v);
 				vec3 p = r.point_at_parameter(2.0);
-				col += ；
+				col += color(r, world, 0);
 			}
 			col /= float(ns);
 
