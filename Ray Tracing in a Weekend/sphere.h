@@ -27,7 +27,7 @@ public:
 private:	
 	vec3 center;
 	float radius;
-	material * mater;
+	material *mater;
 };
 
 
