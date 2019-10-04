@@ -50,19 +50,32 @@ int main()
 {
 	fstream OutputPPM;
 	OutputPPM.open("OutputPPM.ppm");
-	int nx = 200;	
-	int ny = 100;
+	int nx = 1500;
+	int ny = 900;
+	// 采样数量ns
 	int ns = 100;
+
 	OutputPPM << "P3\n" << nx << " " << ny <<"\n255\n";
 
-	hitable* world = random_scene();
+	vec3 lookfrom(13, 2, 3);
+	vec3 lookat(0, 0, 0);
+	float dist_to_focus = 10.0;
+	float aperture = 0.1;
+	camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
 
-	vec3 lookfrom(3, 3, 2);
-	vec3 lookat(0, 0, -1);
-	float dist_to_focus = (lookfrom - lookat).length();
-	float aperture = 2.0f;
 
-	camera cam(lookfrom, lookat,vec3(0,1,0),20,float(nx)/float(ny),aperture,dist_to_focus);
+
+	hitable* list[5];
+	// 球1,2,3,4; 2个lambertian ，2个metal
+	list[0] = new sphere(vec3(0, 0, -1), 0.5, new lambertian(vec3(0.8, 0.3, 0.3)));
+	list[1] = new sphere(vec3(0, -100.5, -1), 100, new lambertian(vec3(0.8, 0.8, 0.0)));
+	list[2] = new sphere(vec3(1, 0, -1), 0.5, new metal(vec3(0.8, 0.6, 0.2), 0.0));
+	list[3] = new sphere(vec3(-1, 0, -1), 0.5, new dielectric(1.5));
+	list[4] = new sphere(vec3(-1, 0, -1), -0.45, new dielectric(1.5));
+	hitable* world = new hitable_list(list, 5);
+	world = random_scene();
+
+
 	int rate = 0;
 	for (int j = ny - 1; j >= 0; j--)
 	{
